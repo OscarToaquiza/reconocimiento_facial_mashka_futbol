@@ -35,7 +35,7 @@ for file_name in os.listdir(imageFacesPath):
 print(facesEncodings)
 print(facesNames)
 
-frame = cv2.imread('./ImgTest/Dylan.jpg')
+frame = cv2.imread('./ImgTest/Mirian.jpg')
 frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
 scale_percent = 50 # percent of original size
@@ -52,7 +52,7 @@ face_location = face_recognition.face_locations(resized2)[0]
 cv2.rectangle(resized2, (face_location[3], face_location[2]), (face_location[1], face_location[2] + 30), (125,220,0), -1)
 cv2.rectangle(resized2, (face_location[3], face_location[0]),(face_location[1], face_location[2]), (125,220,0), 2)
 
-cv2.imshow("IMG IN", resized2)
+cv2.imshow("Resultado", resized2)
 cv2.waitKey(0)
 
 if face_location != []:

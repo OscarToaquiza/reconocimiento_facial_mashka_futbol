@@ -1,6 +1,7 @@
 import face_recognition
 import os
 import cv2
+import json
 
 #Iterar imagenes de rostros
 imageFacesPath = "./Fotos"
@@ -13,6 +14,11 @@ for file_name in os.listdir(imageFacesPath):
     rostrosEncoding.append(encoding)
     facesNames.append(file_name.split(".")[0])
 
+with open('data.json', 'w') as outfile:
+    archivo = json.dump(facesNames,outfile)
+with open('data_2.json', 'w') as outfile:
+    archivo = json.dump(rostrosEncoding,outfile)
+
 # known_image_1  = face_recognition.load_image_file('./Fotos/Dylan.jpg')
 # known_image_2  = face_recognition.load_image_file('./Fotos/Anthony.jpg')
 # known_image_3  = face_recognition.load_image_file('./Fotos/Mirian.jpg')
@@ -23,7 +29,7 @@ for file_name in os.listdir(imageFacesPath):
 
 # rostrosEncoding = [ dylan_encoding, antony_encoding, mirian_encoding]
 
-unknown_image = face_recognition.load_image_file('./ImgTest/Anthony.jpg')
+unknown_image = face_recognition.load_image_file('./ImgTest/Mirian.jpg')
 unknown_encoding = face_recognition.face_encodings(unknown_image)[0]
 #print(unknown_encoding)
 
