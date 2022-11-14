@@ -3,6 +3,32 @@ from unittest import result
 import os
 import cv2
 import face_recognition
+import json
+
+
+
+imageFacesPath = "./Fotos"
+facesNames = []
+rostrosEncoding = []
+for file_name in os.listdir(imageFacesPath):
+    known_image = face_recognition.load_image_file(imageFacesPath + "/" + file_name)
+    encoding = face_recognition.face_encodings(known_image)[0]
+    rostrosEncoding.append(encoding)
+    facesNames.append(file_name.split(".")[0])
+    
+
+
+unknown_image = face_recognition.load_image_file('./Fotos/Dylan.jpg')
+unknown_encoding = face_recognition.face_encodings(unknown_image)[0]
+n = 0;
+for faceName in facesNames:
+    print(faceName)
+    #print(rostrosEncoding[n])
+    results  = face_recognition.compare_faces([rostrosEncoding[n]], unknown_encoding)
+    print(results)
+    if(results[0]):
+        break
+    n=n+1
 
 imageFacesPath = "./Fotos"
 facesEncodings = []
@@ -15,6 +41,8 @@ for file_name in os.listdir(imageFacesPath):
     width = int(image.shape[1] * scale_percent / 100)
     height = int(image.shape[0] * scale_percent / 100)
     dim = (width, height)
+
+
   
     # resize image
     resized = cv2.resize(image, dim, interpolation = cv2.INTER_AREA)
@@ -35,7 +63,7 @@ for file_name in os.listdir(imageFacesPath):
 print(facesEncodings)
 print(facesNames)
 
-frame = cv2.imread('./ImgTest/Mirian.jpg')
+frame = cv2.imread('./Fotos/Dylan.jpg')
 frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
 scale_percent = 50 # percent of original size
