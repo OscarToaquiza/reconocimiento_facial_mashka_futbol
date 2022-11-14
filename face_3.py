@@ -33,7 +33,6 @@ unknown_image = face_recognition.load_image_file('./ImgTest/Mirian.jpg')
 unknown_encoding = face_recognition.face_encodings(unknown_image)[0]
 #print(unknown_encoding)
 
-x= range(3)
 n = 0;
 for faceName in facesNames:
     print(faceName)
