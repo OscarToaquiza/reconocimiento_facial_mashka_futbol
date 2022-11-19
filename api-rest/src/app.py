@@ -10,7 +10,7 @@ from routers import reconocer
 app = Flask(__name__)
 
 def page_not_found(error):
-    return "<h1>Not found page mashka-soft</h1>" , 404
+    return "<h1>Not found page mashka-soft 02 </h1>" , 404
 
 if __name__ == '__main__':
 

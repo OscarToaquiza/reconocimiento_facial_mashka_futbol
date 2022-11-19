@@ -44,14 +44,14 @@ def post_data():
         print("Reconociendo ...")
 
         hora_inicio = datetime.now()
-        file = request.files['image']
+        file = request.files['foto']
         img = Image.open(file.stream)
 
         data = file.stream.read()
         #data = base64.encodebytes(data)
         # print(data)
-        data = base64.b64encode(data).decode('utf-8')
-        print(data)
+        data = base64.b64encode(data).decode()
+        #print(data)
 
         unknown_image = face_recognition.load_image_file(file)
         unknown_encoding = face_recognition.face_encodings(unknown_image)
@@ -64,7 +64,7 @@ def post_data():
                 'time': 0,
                 'size': [img.width, img.height], 
                 'format': img.format,
-                'img': data
+                #'img': data
            })
 
         unknown_encoding = unknown_encoding[0]
@@ -73,13 +73,16 @@ def post_data():
             dataJson = json.load(file)
             nombre = "Desconocido_0000000000"
             for d in dataJson:
-                encoding = np.array(data[d])
+                encoding = np.array(dataJson[d])
                 results = face_recognition.compare_faces(
                     [encoding], unknown_encoding, tolerance=0.5)
                 if (results[0]):
                     nombre = d
         
-        print( unknown_encoding )
+        #print( unknown_encoding )
+
+        #TODO
+        # MANIPULAR IMAGEN, AGREGAR EL CUADRO VERDE DONDE ESTE EL ROSTRO Y ENVIAR A BSE 64 A DATA
         
 
         tiempo = Cronometer.obtener_tiempo_transcurrido_formateado(hora_inicio)
@@ -94,4 +97,5 @@ def post_data():
            })
 
     except Exception as ex:
+        print( str(ex) )
         return jsonify({'msg': str(ex)}), 500

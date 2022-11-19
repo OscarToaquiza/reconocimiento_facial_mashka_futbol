@@ -18,8 +18,7 @@ def train_data():
     num_data_train = 0
     print("Entrenando ...")
     for file_name in os.listdir(imageFacesPath):
-        known_image = face_recognition.load_image_file(
-            imageFacesPath + "/" + file_name)
+        known_image = face_recognition.load_image_file(imageFacesPath + "/" + file_name)
         encoding = face_recognition.face_encodings(known_image)[0]
         data[file_name.split(".")[0]] = encoding.tolist()
         num_data_train = num_data_train + 1 
