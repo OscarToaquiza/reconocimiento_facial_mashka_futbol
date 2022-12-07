@@ -196,3 +196,6 @@ def post_data():
     except Exception as ex:
         print( str(ex) )
         return jsonify({'msg': str(ex)}), 500
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
