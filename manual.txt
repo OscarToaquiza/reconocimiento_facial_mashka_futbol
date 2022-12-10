@@ -1,0 +1,14 @@
+- Crear entornornos virtuales
+link: https://www.youtube.com/watch?v=N9PdRkXOQ4w
+- resumen:
+-- *Comando para empezar, no es necesario volver a instalar
+pip install virtualenv
+virtualenv testdos
+
+-- activar
+Script activate
+
+-- desactivar
+
+deactivate
+
